@@ -23,11 +23,24 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter App'),
+        title: Text("Flutter App"),
       ),
-      body: Center(
-        child: Text('Widget Playground!'),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      body: Column(
+        children: <Widget>[
+          Card(
+            child: Container(
+              width: double.infinity,
+              height: 100,
+              color: Colors.blue,
+              child: Text("CHART"),
+            ),
+            elevation: 5,
+          ),
+          Card(
+            child: Text("Secondary"),
+          )
+        ],
+      ),
     );
   }
 }
