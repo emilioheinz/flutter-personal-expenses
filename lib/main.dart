@@ -1,4 +1,6 @@
+import 'package:PersonalExpenses/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,6 +21,27 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+  final List<Transaction> transactions = [
+    Transaction(
+      id: 't1',
+      title: 'New Shoes',
+      amount: 69.99,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'Weekly Groceries',
+      amount: 69.39,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't1',
+      title: 'New Shoes',
+      amount: 69.99,
+      date: DateTime.now(),
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,8 +59,44 @@ class MyHomePage extends StatelessWidget {
             ),
             elevation: 5,
           ),
-          Card(
-            child: Text("Secondary"),
+          Column(
+            children: transactions
+                .map((e) => Card(
+                      child: Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(30),
+                            child: Text(
+                              '\$${e.amount}',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.purple,
+                              ),
+                            ),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                e.title,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                DateFormat.yMMMMd().format(e.date),
+                                style: TextStyle(
+                                  color: Colors.grey,
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ))
+                .toList(),
           )
         ],
       ),
