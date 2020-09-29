@@ -32,35 +32,23 @@ class TransactionList extends StatelessWidget {
         Transaction t = transactions[index];
 
         return Card(
-          child: Row(
-            children: [
-              Container(
-                padding: EdgeInsets.all(30),
-                child: Text(
-                  '\$${t.amount.toStringAsFixed(2)}',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                ),
+          margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+          elevation: 5,
+          child: ListTile(
+            leading: CircleAvatar(
+              radius: 30,
+              child: Padding(
+                padding: EdgeInsets.all(5),
+                child: FittedBox(child: Text('\$${t.amount}')),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    t.title,
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  Text(
-                    DateFormat.yMMMMd().format(t.date),
-                    style: TextStyle(
-                      color: Colors.grey,
-                    ),
-                  )
-                ],
-              )
-            ],
+            ),
+            title: Text(
+              t.title,
+              style: Theme.of(context).textTheme.headline6,
+            ),
+            subtitle: Text(
+              DateFormat.yMMMd().format(t.date),
+            ),
           ),
         );
       },
